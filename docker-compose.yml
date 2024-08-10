@@ -1,0 +1,58 @@
+services:
+  database:
+    container_name: NexHR_DB
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: .env
+
+  # redis:
+  #   container_name: NexHR_REDIS
+  #   image: redis:latest
+  #   ports:
+  #     - "6379:6379"
+  #   restart: always
+
+  # backend:
+  #   container_name: NexHR_BACKEND
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   command: python manage.py runserver 0.0.0.0:8000
+  #   env_file: .env
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - database
+  #     - redis
+  #   environment:
+  #     DJANGO_SETTINGS_MODULE: "NexHR.config.settings"
+
+  # celery:
+  #   image: backend
+  #   pull_policy: never
+  #   command: celery -A backend.config.celery worker --loglevel=info
+  #   restart: always
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - database
+  #     - redis
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - DJANGO_SETTINGS_MODULE: "NexHR.config.settings"
+  #     - CELERY_BROKER_URL: "redis://NexHR_REDIS:6379/0"
+  #     - CELERY_RESULT_BACKEND: "redis://NexHR_REDIS:6379/0"
+
+
+volumes:
+  postgres_data:
