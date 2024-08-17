@@ -1,35 +1,19 @@
 import os
 from datetime import timedelta
 
-# SIMPLE JWT CONFIGURATION
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False,
-    "BLACKLIST_AFTER_ROTATION": False,
-    "UPDATE_LAST_LOGIN": False,
-    "ALGORITHM": "HS256",
-    "SIGNING_KEY": os.environ.get("SECRET_KEY"),
-    "VERIFYING_KEY": None,
-    "AUTH_HEADER_TYPES": ("Bearer",),
-    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
-    "USER_ID_FIELD": "id",
-    "USER_ID_CLAIM": "user_id",
-    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
-    "TOKEN_TYPE_CLAIM": "token_type",
-}
 
 # REST FRAMEWORK CONFIGURATION
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
+    # "DEFAULT_AUTHENTICATION_CLASSES": (
+    #     "rest_framework_simplejwt.authentication.JWTAuthentication",
+    # ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.SearchFilter",
     ),
     "DEFULT_THROTTLE_CLASSES": (
         "rest_framework.throttling.AnonRateThrottle",
@@ -49,12 +33,30 @@ REST_FRAMEWORK = {
     "DEFAULT_VERSION": "v1",
     "ALLOWED_VERSIONS": ["v1", "v2"],
     "VERSION_PARAM": "version",
+
+    "EXCEPTION_HANDLER": "base.utils.exceptions.custom_exception_handler",
+
+    "DATE_FORMAT": "%d-%m-%Y",
+    "DATETIME_FORMAT": "%d-%m-%Y %H:%M",
+
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
+    "DATETIME_INPUT_FORMATS": ["%d-%m-%Y %H:%M"],
+
+    "TIME_FORMAT": "%H:%M",
+    "TIME_INPUT_FORMATS": ["%H:%M"],
+
+    "COERCE_DECIMAL_TO_STRING": False,
+
+    "SEARCH_PARAM": "search",
+    "ORDERING_PARAM": "ordering",
+
+
 }
 
 # SWAGGER CONFIGURATION
 SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
     "SECURITY_DEFINITIONS": {
-        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
+        "Token": {"type": "apiKey", "name": "Authorization", "in": "header"}
     }
 }

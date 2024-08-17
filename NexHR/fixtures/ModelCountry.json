@@ -1,0 +1,17 @@
+[
+    {
+        "model": "base.modelcountry",
+        "pk": 1,
+        "fields": {
+            "name": "India",
+            "alpha2_code": "IN",
+            "alpha3_code": "IND",
+            "numeric_code": "356",
+            "isd_code": "+91",
+            "currency_name": "Indian Rupee",
+            "currency_alpha3": "INR",
+            "currency_numeric_code": "356",
+            "currency_symbol": "₹"
+        }
+    }
+]

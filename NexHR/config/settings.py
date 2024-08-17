@@ -15,6 +15,7 @@ import sys
 from os import path
 from datetime import timedelta
 from pathlib import Path
+from split_settings.tools import include
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -30,7 +31,7 @@ sys.path.insert(0, path.join(BASE_DIR, "NexHR", "apps"))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
+DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS")]
 
@@ -38,10 +39,9 @@ AUTH_USER_MODEL = "accounts.ModelUser"
 
 THIRD_PARTY_APPS = [
     "phonenumber_field",
-    # "rest_framework",
-    # "rest_framework_simplejwt",
-    # "django_filters",
-    # "drf_yasg",
+    "rest_framework",
+    "django_filters",
+    "drf_yasg",
     # "corsheaders",
 ]
 
@@ -142,6 +142,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "static/"
 
 # Default primary key field type
@@ -149,10 +150,16 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-
-DATE_INPUT_FORMATS = ["%d/%m/%Y"]
+# DATE & TIME CONFIGURATION
+DATETIME_FORMAT = "%d/%m/%Y %H:%M"
 DATETIME_INPUT_FORMATS = ["%d/%m/%Y %H:%M"]
+
+DATE_FORMAT = "%d/%m/%Y"
+DATE_INPUT_FORMATS = ["%d/%m/%Y"]
+
+TIME_FORMAT = "%H:%M"
+TIME_INPUT_FORMATS = ["%H:%M"]
+
 
 SHELL_PLUS = "ipython"
 
@@ -163,3 +170,5 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
 RECAPTCHA_URL = os.environ.get("RECAPTCHA_URL")
 
 SUPPORT_EMAIL = os.environ.get("SUPPORT_EMAIL")
+
+include("rest_framework.py")
