@@ -1,12 +1,10 @@
-import os
-from datetime import timedelta
+__author__ = "Saish Naik"
+__copyright__ = "Copyright 2024, NexHR"
 
 
 # REST FRAMEWORK CONFIGURATION
 REST_FRAMEWORK = {
-    # "DEFAULT_AUTHENTICATION_CLASSES": (
-    #     "rest_framework_simplejwt.authentication.JWTAuthentication",
-    # ),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
     ),
@@ -29,28 +27,16 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
     ],
-    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
-    "DEFAULT_VERSION": "v1",
-    "ALLOWED_VERSIONS": ["v1", "v2"],
-    "VERSION_PARAM": "version",
-
     "EXCEPTION_HANDLER": "base.utils.exceptions.custom_exception_handler",
-
     "DATE_FORMAT": "%d-%m-%Y",
     "DATETIME_FORMAT": "%d-%m-%Y %H:%M",
-
     "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
     "DATETIME_INPUT_FORMATS": ["%d-%m-%Y %H:%M"],
-
     "TIME_FORMAT": "%H:%M",
     "TIME_INPUT_FORMATS": ["%H:%M"],
-
     "COERCE_DECIMAL_TO_STRING": False,
-
     "SEARCH_PARAM": "search",
     "ORDERING_PARAM": "ordering",
-
-
 }
 
 # SWAGGER CONFIGURATION
@@ -58,5 +44,5 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
     "SECURITY_DEFINITIONS": {
         "Token": {"type": "apiKey", "name": "Authorization", "in": "header"}
-    }
+    },
 }

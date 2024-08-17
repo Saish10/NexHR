@@ -7,8 +7,10 @@ from base.models.country import ModelCountry
 from base.serializers.country import CountrySerializer
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from rest_framework.permissions import AllowAny
 
 class CountryListView(ListAPIView):
+    permission_classes = [AllowAny]
     queryset = ModelCountry.objects.all()
     serializer_class = CountrySerializer
     search_fields = ["name"]

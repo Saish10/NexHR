@@ -5,9 +5,11 @@ from drf_yasg.utils import swagger_auto_schema
 from base.models.state import ModelState
 from base.serializers.state import StateSerializer
 from base.utils.response_format import APIResponse
+from rest_framework.permissions import AllowAny
 
 
 class StateListView(ListAPIView):
+    permission_classes = [AllowAny]
     queryset = ModelState.objects.all()
     serializer_class = StateSerializer
     search_fields = ["name"]

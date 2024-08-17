@@ -1,12 +1,14 @@
 # utils/response_format.py
 from rest_framework.response import Response
-
+from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_200_OK
 
 class APIResponse:
     """
     A class for formatting API responses.
     """
-    def success(data=None, message=None, status=200):
+
+    @staticmethod
+    def success(data=None, message=None, status=HTTP_200_OK):
         """
         Formats the response to include data, message, and status.
 
@@ -21,7 +23,9 @@ class APIResponse:
         }
         return Response(response_data, status=status)
 
-    def error(message="something went wrong", status=400):
+
+    @staticmethod
+    def error(message="something went wrong", status=HTTP_400_BAD_REQUEST):
         """
         Formats the response for errors.
 

@@ -26,16 +26,10 @@ schema_view = get_schema_view(
         title="NexHR API",
         default_version="v1",
         description="API documentation for NexHR",
-        terms_of_service="",
-        contact=openapi.Contact(email=""),
-        license=openapi.License(name=""),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
-
-
-admin.site.site_header = "NexHR Admin"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -45,5 +39,8 @@ urlpatterns = [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
-    path("base/", include("base.urls")),
+    path("base/", include("base.urls"), name="base"),
+    path("account/", include("accounts.urls"), name="account"),
 ]
+
+admin.site.site_header = "NexHR Admin"

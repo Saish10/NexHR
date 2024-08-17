@@ -42,6 +42,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "django_filters",
     "drf_yasg",
+    "knox",
     # "corsheaders",
 ]
 
@@ -132,7 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Kolkata"
 
 USE_I18N = True
 
@@ -151,11 +152,11 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # DATE & TIME CONFIGURATION
-DATETIME_FORMAT = "%d/%m/%Y %H:%M"
-DATETIME_INPUT_FORMATS = ["%d/%m/%Y %H:%M"]
+DATETIME_FORMAT = "%d-%m-%Y %H:%M"
+DATETIME_INPUT_FORMATS = ["%d-%m-%Y %H:%M"]
 
-DATE_FORMAT = "%d/%m/%Y"
-DATE_INPUT_FORMATS = ["%d/%m/%Y"]
+DATE_FORMAT = "%d-%m-%Y"
+DATE_INPUT_FORMATS = ["%d-%m-%Y"]
 
 TIME_FORMAT = "%H:%M"
 TIME_INPUT_FORMATS = ["%H:%M"]
