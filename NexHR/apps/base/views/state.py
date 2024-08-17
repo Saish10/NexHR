@@ -1,4 +1,6 @@
-# views.py
+__author__ = "Saish Naik"
+__copyright__ = "Copyright 2024, NexHR"
+
 from rest_framework.generics import ListAPIView
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema

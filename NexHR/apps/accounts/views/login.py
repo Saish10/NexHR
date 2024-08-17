@@ -1,3 +1,6 @@
+__author__ = "Saish Naik"
+__copyright__ = "Copyright 2024, NexHR"
+
 from rest_framework.views import APIView
 from knox.models import AuthToken
 from django.contrib.auth import authenticate
@@ -17,8 +20,8 @@ class LoginView(APIView):
         request_body=openapi.Schema(
             type=openapi.TYPE_OBJECT,
             properties={
-                "email": openapi.Schema(type=openapi.TYPE_STRING),
-                "password": openapi.Schema(type=openapi.TYPE_STRING),
+                "email": openapi.Schema(type=openapi.TYPE_STRING, default="admin@nexhr.com",),
+                "password": openapi.Schema(type=openapi.TYPE_STRING, default="admin@123",),
             },
         )
     )

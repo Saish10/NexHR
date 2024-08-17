@@ -1,4 +1,6 @@
-# utils/response_format.py
+__author__ = "Saish Naik"
+__copyright__ = "Copyright 2024, NexHR"
+
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_200_OK
 

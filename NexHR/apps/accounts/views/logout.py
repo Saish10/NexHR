@@ -1,3 +1,6 @@
+__author__ = "Saish Naik"
+__copyright__ = "Copyright 2024, NexHR"
+
 from rest_framework.views import APIView
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
