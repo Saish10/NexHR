@@ -1,7 +1,7 @@
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
-from rest_framework.generics import ListAPIView
+from rest_framework.viewsets import GenericViewSet
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from base.models.state import ModelState
@@ -10,15 +10,17 @@ from base.utils.response_format import APIResponse
 from rest_framework.permissions import AllowAny
 
 
-class StateListView(ListAPIView):
+class StateListView(GenericViewSet):
+    lookup_field = "country_id"
     permission_classes = [AllowAny]
-    queryset = ModelState.objects.all()
     serializer_class = StateSerializer
     search_fields = ["name"]
 
     def get_queryset(self):
         country_id = self.kwargs['country_id']  # Capture the path parameter
-        return ModelState.objects.filter(country__internal_id=country_id)
+        if country_id:
+            return ModelState.objects.filter(country__internal_id=country_id)
+        return ModelState.objects.all()
 
     @swagger_auto_schema(
         tags=["BASE"],
@@ -41,8 +43,8 @@ class StateListView(ListAPIView):
             ),
         ],
     )
-    def get(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())  # Use the filtered queryset
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return APIResponse.success(
             data=serializer.data, message="States retrieved successfully"

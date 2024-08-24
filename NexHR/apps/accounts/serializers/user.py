@@ -32,7 +32,7 @@ class UserSerializer(FieldsMixin, serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation["full_name"] = instance.get_full_name()
         if "country" in self.fields:
-            representation["country"] = instance.country.name
+            representation["country"] = instance.country.internal_id
         if "state" in self.fields:
-            representation["state"] = instance.state.name
+            representation["state"] = instance.state.internal_id
         return representation
