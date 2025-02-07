@@ -1,18 +1,24 @@
+"""
+User view module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
-from django.http import Http404
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from accounts.serializers.user import UserSerializer
 from accounts.models.account import ModelUser
+from accounts.serializers.user import UserSerializer
 from base.utils.response_format import APIResponse
-from rest_framework.decorators import action
-from drf_yasg.utils import swagger_auto_schema
+from django.http import Http404
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
 
 
 class UserViewSet(ModelViewSet):
+    """
+    User view class.
+    """
 
     lookup_field = "internal_id"
     serializer_class = UserSerializer
@@ -146,6 +152,7 @@ class UserViewSet(ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return APIResponse.success(
+                data={},
                 message="User details updated successfully.",
             )
         return APIResponse.error(errors=serializer.errors)
@@ -208,7 +215,9 @@ class UserViewSet(ModelViewSet):
         try:
             instance = self.get_object()
             self.perform_destroy(instance)
-            return APIResponse.success(message="User deleted successfully.")
+            return APIResponse.success(
+                data={}, message="User deleted successfully."
+            )
         except Http404:
             return APIResponse.error(message="User not found.")
 

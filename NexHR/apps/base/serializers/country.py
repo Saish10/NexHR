@@ -1,3 +1,7 @@
+"""
+Country serializer module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -9,7 +13,10 @@ class CountrySerializer(serializers.ModelSerializer):
     """
     Serializer for Country model.
     """
+
     class Meta:
+        """Class Meta"""
+
         model = ModelCountry
         fields = [
             "internal_id",

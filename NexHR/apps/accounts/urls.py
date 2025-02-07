@@ -1,3 +1,7 @@
+"""
+Accounts urls module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -9,8 +13,8 @@ from accounts.views.password import PasswordViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'', UserViewSet, basename="account")
-router.register(r'', PasswordViewSet, basename="password")
+router.register(r"", UserViewSet, basename="account")
+router.register(r"", PasswordViewSet, basename="password")
 
 
 urlpatterns = [

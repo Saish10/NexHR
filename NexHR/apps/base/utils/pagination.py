@@ -1,9 +1,15 @@
+"""
+Pagination module.
+"""
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
 from rest_framework.pagination import PageNumberPagination
 
 class StandardPagination(PageNumberPagination):
+    """
+    Standard pagination class.
+    """
     page_size_query_param = "page_size"
     page_query_param = "page"
     page_size = 10

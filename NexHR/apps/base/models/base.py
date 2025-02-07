@@ -1,3 +1,7 @@
+"""
+Base model module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -7,6 +11,10 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ULIDField(models.CharField):
+    """
+    ULID model field.
+    """
+
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 26  # ULID string length
         kwargs["default"] = ulid.new

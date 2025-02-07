@@ -11,7 +11,7 @@ class APIResponse:
     """
 
     @staticmethod
-    def success(data={}, message=None, status=HTTP_200_OK):
+    def success(data, message=None, status=HTTP_200_OK):
         """
         Formats the response to include data, message, and status.
 

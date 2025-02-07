@@ -1,3 +1,6 @@
+"""
+Account model module.
+"""
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -128,6 +131,7 @@ class ModelUser(AbstractBaseUser, PermissionsMixin, ModelBase):
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
     class Meta:
+        """Class Meta"""
         db_table = "user"
         verbose_name = _("User")
         verbose_name_plural = _("Users")
@@ -147,4 +151,4 @@ class ModelUser(AbstractBaseUser, PermissionsMixin, ModelBase):
         :rtype: str
         """
         # Return the email of the user account
-        return self.email
+        return str(self.email)

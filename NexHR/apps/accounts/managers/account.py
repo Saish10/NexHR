@@ -1,3 +1,6 @@
+"""
+Account manager module.
+"""
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -6,6 +9,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
+    """
+    User manager class.
+    """
 
     def create_user(self, email, password=None, **extra_fields):
         """

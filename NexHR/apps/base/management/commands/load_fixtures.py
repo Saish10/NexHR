@@ -1,3 +1,7 @@
+"""
+Load all fixtures
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -7,6 +11,9 @@ from django.core.management import call_command
 
 
 class Command(BaseCommand):
+    """
+    Load all fixtures command
+    """
     help = "Load all fixtures"
 
     def handle(self, *args, **options):

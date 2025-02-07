@@ -1,3 +1,7 @@
+"""
+Country model module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -45,9 +49,7 @@ class ModelCountry(ModelBase):
         max_length=5,
         unique=True,
         verbose_name=_("ISD Code"),
-        help_text=_(
-            "The International Subscriber Dialing code (e.g., '1' for the United States, '91' for India)."
-        ),
+        help_text=_("The International Subscriber Dialing code."),
     )
     currency_name = models.CharField(
         max_length=100,
@@ -85,6 +87,8 @@ class ModelCountry(ModelBase):
     )
 
     class Meta:
+        """Class Meta"""
+
         db_table = "country"
         verbose_name = _("Country")
         verbose_name_plural = _("Countries")
@@ -98,12 +102,13 @@ class ModelCountry(ModelBase):
         :rtype: str
         """
         # Return the name of the country.
-        return self.name
+        return str(self.name)
 
     @classmethod
     def get_country(cls, **kwargs):
         """
-        Fetches and returns the country object that matches the given filter parameters.
+        Fetches and returns the country object that matches the given filter
+        parameters.
 
         :param kwargs: A dictionary containing the filter parameters.
         :type kwargs: dict
@@ -121,12 +126,14 @@ class ModelCountry(ModelBase):
     @classmethod
     def get_countries(cls, **kwargs):
         """
-        Fetches and returns a queryset of all the countries that match the given filter parameters.
+        Fetches and returns a queryset of all the countries that match the
+        given filter parameters.
 
         :param kwargs: A dictionary containing the filter parameters.
         :type kwargs: dict
 
-        :return: A queryset of all the countries that match the given filter parameters.
+        :return: A queryset of all the countries that match the given filter
+        parameters.
         :rtype: django.db.models.query.QuerySet
         """
 

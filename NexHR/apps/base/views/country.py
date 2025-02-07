@@ -1,15 +1,19 @@
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
-from rest_framework.viewsets import GenericViewSet
-from base.utils.response_format import APIResponse
 from base.models.country import ModelCountry
 from base.serializers.country import CountrySerializer
-from drf_yasg.utils import swagger_auto_schema
+from base.utils.response_format import APIResponse
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import AllowAny
+from rest_framework.viewsets import GenericViewSet
+
 
 class CountryListView(GenericViewSet):
+    """
+    Retrieve a list of countries.
+    """
     permission_classes = [AllowAny]
     queryset = ModelCountry.objects.all()
     serializer_class = CountrySerializer
@@ -30,7 +34,10 @@ class CountryListView(GenericViewSet):
             ),
         ],
     )
-    def list(self, request, *args, **kwargs):
+    def list(self, request):
+        """
+        Retrieve a list of countries.
+        """
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return APIResponse.success(

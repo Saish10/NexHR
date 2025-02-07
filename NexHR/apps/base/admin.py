@@ -1,3 +1,7 @@
+"""
+Admin module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -8,6 +12,10 @@ from base.models.state import ModelState
 
 @admin.register(ModelCountry)
 class ModelCountryAdmin(admin.ModelAdmin):
+    """
+    Country admin class.
+    """
+
     list_display = [
         "name",
         "isd_code",
@@ -19,5 +27,9 @@ class ModelCountryAdmin(admin.ModelAdmin):
 
 @admin.register(ModelState)
 class ModelStateAdmin(admin.ModelAdmin):
+    """
+    State admin class.
+    """
+
     list_display = ["name", "code", "country"]
     search_fields = ["name", "code", "country__name"]

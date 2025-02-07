@@ -1,3 +1,7 @@
+"""
+Password view module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -15,6 +19,7 @@ from drf_yasg import openapi
 
 
 class PasswordViewSet(GenericViewSet):
+    """ViewSet for password operations."""
 
     def get_permissions(self):
         if self.action == "change":
@@ -39,13 +44,17 @@ class PasswordViewSet(GenericViewSet):
         ),
     )
     @action(detail=False, methods=["post"], url_path="forgot-password")
-    def forgot(self, request, *args, **kwargs):
+    def forgot(self, request):
+        """
+        Request a password reset link.
+        """
         serializer = PasswordResetSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.validated_data.get("user")
             # Assuming you have a method to send the reset email
             user.send_password_reset_email()
             return APIResponse.success(
+                data={},
                 message="Password reset link sent successfully.",
                 status=status.HTTP_200_OK,
             )
@@ -71,7 +80,9 @@ class PasswordViewSet(GenericViewSet):
     )
     @action(detail=False, methods=["post"], url_path="reset-password")
     def reset(self, request, *args, **kwargs):
-        pass
+        """
+        Reset the password using the token sent in the email.
+        """
 
     @swagger_auto_schema(
         tags=["AUTH"],
@@ -81,7 +92,10 @@ class PasswordViewSet(GenericViewSet):
         request_body=PasswordChangeSerializer,
     )
     @action(detail=False, methods=["post"], url_path="change-password")
-    def change(self, request, *args, **kwargs):
+    def change(self, request):
+        """
+        Change the password for the user.
+        """
         serializer = PasswordChangeSerializer(
             data=request.data, context={"request": request}
         )
@@ -90,6 +104,6 @@ class PasswordViewSet(GenericViewSet):
             user.set_password(serializer.validated_data["new_password"])
             user.save()
             return APIResponse.success(
-                message="Password changed successfully."
+                data={}, message="Password changed successfully."
             )
         return APIResponse.error(errors=serializer.errors)

@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import sys
 from os import path
-from datetime import timedelta
 from pathlib import Path
 from split_settings.tools import include
 from dotenv import load_dotenv

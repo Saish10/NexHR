@@ -1,3 +1,7 @@
+"""
+User serializer module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -7,6 +11,10 @@ from base.utils.mixins import FieldsMixin
 
 
 class UserSerializer(FieldsMixin, serializers.ModelSerializer):
+    """
+    User serializer class.
+    """
+
     class Meta:
         model = ModelUser
         fields = (

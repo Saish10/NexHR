@@ -1,3 +1,7 @@
+"""
+State model module.
+"""
+
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
@@ -23,7 +27,7 @@ class ModelState(ModelBase):
         null=True,
         verbose_name=_("State Code"),
         help_text=_(
-            "The code or abbreviation used for the state or province (e.g., 'CA' for California)."
+            "The code used for the state (e.g., 'CA' for California)."
         ),
     )
     country = models.ForeignKey(
@@ -35,6 +39,10 @@ class ModelState(ModelBase):
     )
 
     class Meta:
+        """
+        Meta class for the model.
+        """
+
         db_table = "state"
         verbose_name = _("State")
         verbose_name_plural = _("States")

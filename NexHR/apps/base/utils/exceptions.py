@@ -1,12 +1,17 @@
+"""
+Exception module.
+"""
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
-from rest_framework.views import exception_handler
-from .response_format import APIResponse
 from rest_framework.exceptions import APIException, ValidationError
+from rest_framework.views import exception_handler
+
+from .response_format import APIResponse
 
 
 def custom_exception_handler(exc, context):
+    """Custom exception handler."""
     # Call REST framework's default exception handler first
     response = exception_handler(exc, context)
 

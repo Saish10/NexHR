@@ -1,3 +1,6 @@
+"""
+ASGI config for NexHR project.
+"""
 __author__ = "Saish Naik"
 __copyright__ = "Copyright 2024, NexHR"
 
